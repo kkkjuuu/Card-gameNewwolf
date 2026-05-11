@@ -1,10 +1,10 @@
 {
   "name": "werewolf-game",
   "version": "1.0.0",
-  "description": "🐺 Werewolf / Mafia multiplayer game — Thai language, dark gothic aesthetic",
+  "description": "Werewolf multiplayer game",
   "main": "server.js",
   "scripts": {
-    "start": "node -e \"const fs=require('fs');let s=fs.readFileSync('server.js','utf8');s=s.replace(/^\\uFEFF/,'').replace(/\\u2013/g,'--');fs.writeFileSync('server.js',s,'utf8');\" && node server.js"
+    "start": "node fix.js && node server.js",
     "dev": "nodemon server.js"
   },
   "dependencies": {
