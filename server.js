@@ -82,7 +82,11 @@ function startNightPhase(room) {
   room.nightActions = { werewolfVotes: {}, seerTarget: null, bodyguardTarget: null };
   room.nightStep = 'werewolf'; // werewolf → seer → bodyguard → resolve
 
-  io.to(room.id).emit('phaseChange', { phase: 'night', round: room.round });
+  io.to(room.id).emit('phaseChange', {
+    phase: 'night',
+    round: room.round,
+    players: getPublicPlayers(room)
+  });
   io.to(room.id).emit('narratorSpeak', 'ทุกคนหลับตา และโน้มศีรษะลง');
 
   setTimeout(() => startWerewolfTurn(room), 3000);
