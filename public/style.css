@@ -21,8 +21,8 @@
   --seer-glow:    #44aaff;
   --bg-glow:      #4444ff;
 
-  --font-head: 'Cinzel', serif;
-  --font-body: 'EB Garamond', serif;
+  --font-head: 'Chonburi', serif;
+  --font-body: 'Kanit', sans-serif;
 
   --radius: 12px;
   --radius-lg: 20px;
@@ -77,10 +77,10 @@ body {
 }
 
 /* ── Typography ────────────────────────────────────────────────────────────── */
-h1, h2, h3 { font-family: var(--font-head); }
+h1, h2, h3 { font-family: var(--font-head); font-weight: normal; }
 .game-title {
   font-size: clamp(2.5rem, 8vw, 5rem);
-  letter-spacing: 0.25em;
+  letter-spacing: 0.1em;
   color: var(--gold);
   text-shadow: 0 0 30px rgba(201,168,76,0.6), 0 0 60px rgba(201,168,76,0.2);
   animation: titleGlow 3s ease-in-out infinite;
@@ -92,7 +92,7 @@ h1, h2, h3 { font-family: var(--font-head); }
 
 .game-subtitle {
   font-family: var(--font-body);
-  font-style: italic;
+  font-weight: 300;
   color: var(--silver-dim);
   letter-spacing: 0.1em;
   font-size: 1.1rem;
@@ -102,14 +102,14 @@ h1, h2, h3 { font-family: var(--font-head); }
   font-family: var(--font-head);
   font-size: 1.4rem;
   color: var(--gold);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 .card-title {
   font-family: var(--font-head);
   font-size: 1.1rem;
   color: var(--gold);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   margin-bottom: 1.2rem;
   border-bottom: 1px solid rgba(201,168,76,0.3);
   padding-bottom: 0.6rem;
@@ -229,9 +229,10 @@ h1, h2, h3 { font-family: var(--font-head); }
 
 /* ── Buttons ───────────────────────────────────────────────────────────────── */
 .btn {
-  font-family: var(--font-head);
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
   border: none; border-radius: 8px;
   padding: 0.6rem 1.4rem;
   cursor: pointer; transition: all 0.2s;
@@ -278,7 +279,7 @@ h1, h2, h3 { font-family: var(--font-head); }
 }
 .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
 
-.btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
+.btn-lg { padding: 0.85rem 2rem; font-size: 1.1rem; }
 .btn-block { width: 100%; }
 .btn-icon { background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 4px; color: var(--gold); }
 
@@ -298,10 +299,10 @@ h1, h2, h3 { font-family: var(--font-head); }
   transition: border-color 0.2s, background 0.2s;
 }
 .room-item:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
-.room-item-name { font-family: var(--font-head); font-size: 0.95rem; color: var(--gold-light); flex: 1; }
+.room-item-name { font-family: var(--font-body); font-weight: 500; font-size: 1.05rem; color: var(--gold-light); flex: 1; }
 .room-item-info { font-size: 0.85rem; color: var(--text-dim); }
 .room-item-lock { font-size: 0.9rem; }
-.empty-state { text-align: center; color: var(--text-dim); font-style: italic; padding: 1rem; }
+.empty-state { text-align: center; color: var(--text-dim); font-weight: 300; padding: 1rem; }
 
 /* ── Modal ─────────────────────────────────────────────────────────────────── */
 .modal-overlay {
@@ -334,11 +335,11 @@ h1, h2, h3 { font-family: var(--font-head); }
   font-family: var(--font-head);
   color: var(--gold);
   font-size: 1.3rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
 }
 .form-group { margin-bottom: 1rem; }
-.form-group label { display: block; font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.4rem; font-family: var(--font-head); letter-spacing: 0.05em; }
+.form-group label { display: block; font-size: 0.9rem; color: var(--text-dim); margin-bottom: 0.4rem; font-family: var(--font-body); font-weight: 500; letter-spacing: 0.02em; }
 
 /* ── Player Count Selector ─────────────────────────────────────────────────── */
 .player-count-grid {
@@ -350,7 +351,8 @@ h1, h2, h3 { font-family: var(--font-head); }
   background: var(--surface2);
   border: 1.5px solid rgba(201,168,76,0.2);
   color: var(--text);
-  font-family: var(--font-head);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 1rem;
   cursor: pointer; transition: all 0.2s;
   display: flex; align-items: center; justify-content: center;
@@ -380,7 +382,7 @@ h1, h2, h3 { font-family: var(--font-head); }
 .room-code {
   font-family: var(--font-head);
   font-size: 1.4rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.1em;
   color: var(--gold);
   text-shadow: var(--shadow-gold);
 }
@@ -406,8 +408,9 @@ h1, h2, h3 { font-family: var(--font-head); }
 .player-slot.empty { opacity: 0.4; }
 .slot-avatar { font-size: 2.2rem; }
 .slot-name {
-  font-family: var(--font-head);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
   color: var(--gold-light);
   text-align: center;
   word-break: break-word;
@@ -420,7 +423,8 @@ h1, h2, h3 { font-family: var(--font-head); }
   color: #000;
   padding: 1px 5px;
   border-radius: 4px;
-  font-family: var(--font-head);
+  font-family: var(--font-body);
+  font-weight: 700;
 }
 
 .waiting-actions { display: flex; flex-direction: column; gap: 0.8rem; align-items: center; }
@@ -444,7 +448,7 @@ h1, h2, h3 { font-family: var(--font-head); }
   font-family: var(--font-head);
   font-size: 1.5rem;
   color: var(--silver-dim);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.05em;
 }
 
 /* ── Card Selection ────────────────────────────────────────────────────────── */
@@ -460,7 +464,7 @@ h1, h2, h3 { font-family: var(--font-head); }
   font-family: var(--font-head);
   font-size: 1.1rem;
   color: var(--silver-dim);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 .waiting-indicator {
   margin-top: 1rem;
@@ -525,11 +529,11 @@ h1, h2, h3 { font-family: var(--font-head); }
   font-family: var(--font-head);
   font-size: 1.8rem;
   color: var(--gold);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 .role-reveal-desc {
   color: var(--text);
-  font-style: italic;
+  font-weight: 300;
   text-align: center;
   line-height: 1.6;
 }
@@ -550,9 +554,10 @@ h1, h2, h3 { font-family: var(--font-head); }
 }
 
 .phase-badge {
-  font-family: var(--font-head);
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   background: rgba(139,26,26,0.3);
@@ -560,10 +565,11 @@ h1, h2, h3 { font-family: var(--font-head); }
   color: var(--gold);
 }
 .round-badge {
-  font-family: var(--font-head);
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.9rem;
   color: var(--text-dim);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 
 /* Timer */
@@ -583,8 +589,9 @@ h1, h2, h3 { font-family: var(--font-head); }
 .timer-text {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
   color: var(--gold);
 }
 
@@ -607,8 +614,8 @@ h1, h2, h3 { font-family: var(--font-head); }
 }
 .table-center-label {
   font-family: var(--font-head);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
   color: rgba(201,168,76,0.3);
 }
 
@@ -675,16 +682,16 @@ h1, h2, h3 { font-family: var(--font-head); }
   color: white; border-radius: 50%;
   width: 22px; height: 22px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.7rem; font-weight: bold;
-  font-family: var(--font-head);
+  font-size: 0.8rem; font-weight: bold;
+  font-family: var(--font-body);
   border: 1.5px solid var(--bg);
   z-index: 10;
 }
 
 .token-name {
-  font-family: var(--font-head);
-  font-size: 0.62rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
   color: var(--gold-light);
   max-width: 70px; text-align: center;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -696,9 +703,9 @@ h1, h2, h3 { font-family: var(--font-head); }
 .token-you-badge {
   position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
   background: var(--gold-dark);
-  color: #000; font-size: 0.5rem;
+  color: #000; font-size: 0.6rem;
   padding: 1px 4px; border-radius: 3px;
-  font-family: var(--font-head); font-weight: 700;
+  font-family: var(--font-body); font-weight: 700;
   white-space: nowrap;
 }
 
@@ -714,15 +721,15 @@ h1, h2, h3 { font-family: var(--font-head); }
 
 .action-title {
   font-family: var(--font-head);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--gold);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   margin-bottom: 0.3rem;
 }
 .action-desc {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-dim);
-  font-style: italic;
+  font-weight: 300;
 }
 
 /* Night/Day overlays */
@@ -757,8 +764,8 @@ h1, h2, h3 { font-family: var(--font-head); }
 .narrator-icon { font-size: 1.1rem; }
 .narrator-text {
   font-family: var(--font-body);
-  font-style: italic;
-  font-size: 0.9rem;
+  font-weight: 300;
+  font-size: 0.95rem;
   color: var(--gold-light);
 }
 
@@ -782,7 +789,8 @@ h1, h2, h3 { font-family: var(--font-head); }
 }
 .seer-result-icon { font-size: 3.5rem; }
 .seer-result-text {
-  font-family: var(--font-head);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 1.1rem;
   color: var(--silver);
   letter-spacing: 0.05em;
@@ -802,12 +810,12 @@ h1, h2, h3 { font-family: var(--font-head); }
   font-family: var(--font-head);
   font-size: clamp(2rem, 6vw, 3.5rem);
   color: var(--gold);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-shadow: 0 0 30px rgba(201,168,76,0.5);
   animation: fadeIn 0.8s ease;
 }
 .endgame-subtitle {
-  font-style: italic;
+  font-weight: 300;
   color: var(--text-dim);
   font-size: 1rem;
 }
@@ -832,15 +840,16 @@ h1, h2, h3 { font-family: var(--font-head); }
 }
 .endgame-avatar { font-size: 2rem; }
 .endgame-name {
-  font-family: var(--font-head);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
   color: var(--gold-light);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 .endgame-role {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-dim);
-  font-style: italic;
+  font-weight: 300;
 }
 .endgame-team { font-size: 1.1rem; }
 .endgame-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
@@ -856,8 +865,9 @@ h1, h2, h3 { font-family: var(--font-head); }
   border: 1px solid rgba(201,168,76,0.35);
   border-radius: 10px; padding: 0.75rem 1.2rem;
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-family: var(--font-body);
+  font-weight: 400;
   max-width: 280px;
   animation: toastIn 0.3s ease;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
