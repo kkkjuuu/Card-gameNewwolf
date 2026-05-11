@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🐺 Werewolf — คืนสยอง</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- SCREEN 1: LOBBY -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="screen-lobby" class="screen active">
+  <div class="stars" id="stars"></div>
+  <div class="moon-glow"></div>
+
+  <div class="lobby-container">
+    <header class="lobby-header">
+      <div class="wolf-icon">🐺</div>
+      <h1 class="game-title">WEREWOLF</h1>
+      <p class="game-subtitle">คืนสยอง — แห่งป่ามืด</p>
+    </header>
+
+```
+<!-- Profile -->
+<section class="card profile-card">
+  <h2 class="card-title">โปรไฟล์ของคุณ</h2>
+  <div class="profile-layout">
+    <div class="avatar-preview-wrap">
+      <div class="avatar-preview" id="avatarPreview">🐺</div>
+      <div class="glow-ring"></div>
+    </div>
+    <div class="profile-inputs">
+      <input type="text" id="playerName" class="gothic-input" placeholder="ชื่อผู้เล่น..." maxlength="16"/>
+      <div class="avatar-grid" id="avatarGrid">
+        <!-- filled by JS -->
+      </div>
+      <button class="btn btn-gold" onclick="saveProfile()">💾 บันทึกโปรไฟล์</button>
+    </div>
+  </div>
+</section>
+
+<!-- Buttons -->
+<div class="lobby-buttons">
+  <button class="btn btn-primary btn-lg" onclick="showCreateRoom()">🏠 สร้างห้อง</button>
+  <button class="btn btn-secondary btn-lg" onclick="showJoinRoom()">🚪 เข้าร่วมห้อง</button>
+</div>
+
+<!-- Room List -->
+<section id="roomListSection" class="card room-list-card hidden">
+  <h2 class="card-title">ห้องที่เปิดอยู่</h2>
+  <div id="roomList" class="room-list">
+    <p class="empty-state">กำลังโหลด...</p>
+  </div>
+</section>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- MODAL: CREATE ROOM -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="modal-createRoom" class="modal-overlay hidden">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-createRoom')">✕</button>
+    <h2 class="modal-title">🏠 สร้างห้อง</h2>
+    <div class="form-group">
+      <label>ชื่อห้อง</label>
+      <input type="text" id="roomName" class="gothic-input" placeholder="ชื่อห้อง..." maxlength="30"/>
+    </div>
+    <div class="form-group">
+      <label>รหัสผ่าน (ไม่บังคับ)</label>
+      <input type="password" id="roomPassword" class="gothic-input" placeholder="ว่างเปล่า = ห้องสาธารณะ"/>
+    </div>
+    <div class="form-group">
+      <label>จำนวนผู้เล่น</label>
+      <div class="player-count-grid" id="playerCountGrid">
+        <!-- 4-10 -->
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" onclick="createRoom()">🏠 สร้างห้อง</button>
+  </div>
+</div>
+
+<!-- MODAL: Password -->
+
+<div id="modal-password" class="modal-overlay hidden">
+  <div class="modal-box small">
+    <button class="modal-close" onclick="closeModal('modal-password')">✕</button>
+    <h2 class="modal-title">🔒 ใส่รหัสผ่าน</h2>
+    <input type="password" id="joinPassword" class="gothic-input" placeholder="รหัสผ่าน..."/>
+    <button class="btn btn-primary btn-block" onclick="submitJoinPassword()">เข้าร่วม</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- SCREEN 2: WAITING ROOM -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="screen-waiting" class="screen">
+  <div class="stars"></div>
+  <div class="waiting-container">
+    <div class="waiting-header">
+      <h2 id="waitingRoomName" class="section-title">ห้อง...</h2>
+      <div class="room-code-wrap">
+        <span class="room-code-label">รหัสห้อง</span>
+        <span id="waitingRoomCode" class="room-code">------</span>
+        <button class="btn-icon" onclick="copyRoomCode()" title="คัดลอก">📋</button>
+      </div>
+      <div id="waitingSlotInfo" class="slot-info">0 / 0 ผู้เล่น</div>
+    </div>
+
+```
+<div id="waitingSlots" class="player-slots-grid">
+  <!-- filled by JS -->
+</div>
+
+<div class="waiting-actions">
+  <button id="btnStartGame" class="btn btn-primary btn-lg hidden" onclick="startGame()">⚔️ เริ่มเกม</button>
+  <button id="btnReady" class="btn btn-secondary btn-lg hidden" onclick="toggleReady()">✅ พร้อมแล้ว</button>
+  <button class="btn btn-ghost" onclick="leaveRoom()">← ออกจากห้อง</button>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- SCREEN 3: COUNTDOWN -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="screen-countdown" class="screen">
+  <div class="countdown-wrap">
+    <div id="countdownNumber" class="countdown-number">3</div>
+    <div class="countdown-text">เกมเริ่มแล้ว!</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- SCREEN 4: CARD SELECTION -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="screen-cardSelection" class="screen">
+  <div class="card-selection-container">
+    <div id="cardSelectionStatus" class="card-selection-status">
+      <!-- "รอ [Name] เลือกการ์ด..." or spread of cards -->
+    </div>
+    <div id="cardSpread" class="card-spread hidden">
+      <!-- cards -->
+    </div>
+    <div id="roleRevealPanel" class="role-reveal-panel hidden">
+      <div id="roleIcon" class="role-reveal-icon">🐺</div>
+      <h2 id="roleName" class="role-reveal-name">หมาป่า</h2>
+      <p id="roleDesc" class="role-reveal-desc">คำอธิบาย...</p>
+      <button class="btn btn-primary" onclick="playerReady()">✅ พร้อมเข้าสู่กลางคืน</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- SCREEN 5: GAME BOARD -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="screen-game" class="screen">
+  <!-- Night overlay -->
+  <div id="nightOverlay" class="night-overlay hidden"></div>
+  <!-- Day overlay -->
+  <div id="dayOverlay" class="day-overlay hidden"></div>
+
+  <!-- Top Bar -->
+
+  <div class="game-topbar">
+    <div class="phase-badge" id="phaseBadge">🌙 กลางคืน</div>
+    <div class="round-badge" id="roundBadge">รอบที่ 1</div>
+    <div class="timer-wrap">
+      <div class="timer-circle" id="timerCircle">
+        <svg viewBox="0 0 36 36" class="timer-svg">
+          <path class="timer-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <path class="timer-arc" id="timerArc" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        </svg>
+        <span id="timerText" class="timer-text">--</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table area -->
+
+  <div class="game-table-wrap">
+    <div class="game-table" id="gameTable">
+      <div class="table-center-label">ป่ามืด</div>
+    </div>
+    <div id="playerCircle" class="player-circle">
+      <!-- player tokens placed by JS -->
+    </div>
+  </div>
+
+  <!-- Bottom action panel -->
+
+  <div id="actionPanel" class="action-panel">
+    <!-- context-sensitive content -->
+  </div>
+
+  <!-- Narrator bar -->
+
+  <div id="narratorBar" class="narrator-bar hidden">
+    <div class="narrator-icon">📜</div>
+    <div id="narratorText" class="narrator-text">...</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- SCREEN 6: END GAME -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="screen-endgame" class="screen">
+  <div class="endgame-container">
+    <div id="endgameTitle" class="endgame-title">🐺 หมาป่าชนะ!</div>
+    <div id="endgameSubtitle" class="endgame-subtitle">ความมืดได้ครองโลก</div>
+    <div id="endgameRolesGrid" class="endgame-roles-grid">
+      <!-- role reveal cards -->
+    </div>
+    <div class="endgame-buttons">
+      <button class="btn btn-primary" onclick="playAgain()">🔄 เล่นต่อ</button>
+      <button class="btn btn-ghost" onclick="backToLobby()">🏠 กลับหน้าหลัก</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- TOAST -->
+
+<!-- ══════════════════════════════════════════════════════════════════════════ -->
+
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- Seer result overlay -->
+
+<div id="seerResultOverlay" class="seer-overlay hidden">
+  <div class="seer-result-box">
+    <div id="seerResultIcon" class="seer-result-icon">👁️</div>
+    <div id="seerResultText" class="seer-result-text">...</div>
+    <button class="btn btn-gold" onclick="closeSeerResult()">รับทราบ</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="audio.js"></script>
+
+<script src="game.js"></script>
+
+</body>
+</html>
