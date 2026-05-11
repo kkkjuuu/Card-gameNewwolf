@@ -35,7 +35,7 @@ for (let i = 0; i < dist.seer;      i++) deck.push(‘seer’);
 for (let i = 0; i < dist.bodyguard; i++) deck.push(‘bodyguard’);
 for (let i = 0; i < dist.villager;  i++) deck.push(‘villager’);
 // Fisher-Yates shuffle
-for (let i = deck.length - 1; i > 0; i--) {
+for (let i = deck.length - 1; i > 0; i–) {
 const j = Math.floor(Math.random() * (i + 1));
 [deck[i], deck[j]] = [deck[j], deck[i]];
 }
@@ -80,7 +80,7 @@ alive: p.alive,
 function startNightPhase(room) {
 room.phase = ‘night’;
 room.nightActions = { werewolfVotes: {}, seerTarget: null, bodyguardTarget: null };
-room.nightStep = ‘werewolf’; // werewolf → seer → bodyguard → resolve
+room.nightStep = ‘werewolf’;
 
 io.to(room.id).emit(‘phaseChange’, { phase: ‘night’, round: room.round });
 io.to(room.id).emit(‘narratorSpeak’, ‘ทุกคนหลับตา และโน้มศีรษะลง’);
@@ -94,7 +94,6 @@ io.to(room.id).emit(‘narratorSpeak’, ‘หมาป่าลืมตาข
 io.to(room.id).emit(‘narratorSpeak’, ‘หมาป่าเลือกเหยื่อของคุณ’);
 io.to(room.id).emit(‘nightStep’, { step: ‘werewolf’ });
 
-// Tell wolves who each other are
 const wolves = Object.values(room.players).filter(p => p.role === ‘werewolf’ && p.alive);
 const wolfIds = wolves.map(w => w.id);
 wolves.forEach(w => {
@@ -136,7 +135,6 @@ io.to(room.id).emit(‘narratorSpeak’, ‘ทุกคนลืมตาขึ
 io.to(room.id).emit(‘nightStep’, { step: ‘resolve’ });
 
 ```
-// Determine werewolf kill target (majority vote)
 const votes = room.nightActions.werewolfVotes;
 const voteCount = {};
 Object.values(votes).forEach(t => { voteCount[t] = (voteCount[t] || 0) + 1; });
@@ -186,7 +184,6 @@ killed,
 players: getPublicPlayers(room),
 });
 
-// Auto start vote after 60s
 room.dayTimer = setTimeout(() => {
 if (room.phase === ‘day’) startVoting(room);
 }, 60000);
@@ -329,7 +326,6 @@ room.roleDeck = buildRoleDeck(room.maxPlayers);
 room.cardSelectionOrder = Object.keys(room.players).sort(() => Math.random() - 0.5);
 room.cardSelectionIndex = 0;
 
-// Countdown
 io.to(room.id).emit('gameStarting');
 let count = 3;
 const cd = setInterval(() => {
@@ -346,7 +342,6 @@ const cd = setInterval(() => {
 
 function advanceCardSelection(room) {
 if (room.cardSelectionIndex >= room.cardSelectionOrder.length) {
-// All cards selected — send roles privately
 Object.values(room.players).forEach(p => {
 io.to(p.socketId).emit(‘roleReveal’, { role: p.role });
 });
@@ -458,7 +453,7 @@ roomId: room.id,
 roomName: room.name,
 maxPlayers: room.maxPlayers,
 players: getPublicPlayers(room),
-isHost: false, // client will fix based on socket id
+isHost: false,
 });
 io.to(room.host).emit(‘waitingRoom’, {
 roomId: room.id,
@@ -495,4 +490,4 @@ broadcastRoomList();
 });
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`🐺 Werewolf server running on http://localhost:${PORT}`));
+server.listen(PORT, () => console.log(`Werewolf server running on http://localhost:${PORT}`));
