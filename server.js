@@ -35,7 +35,7 @@ for (let i = 0; i < dist.seer;      i++) deck.push(‘seer’);
 for (let i = 0; i < dist.bodyguard; i++) deck.push(‘bodyguard’);
 for (let i = 0; i < dist.villager;  i++) deck.push(‘villager’);
 // Fisher-Yates shuffle
-for (let i = deck.length - 1; i > 0; i–) {
+for (let i = deck.length - 1; i > 0; i--) {
 const j = Math.floor(Math.random() * (i + 1));
 [deck[i], deck[j]] = [deck[j], deck[i]];
 }
